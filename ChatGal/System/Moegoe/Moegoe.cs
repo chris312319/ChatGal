@@ -17,8 +17,8 @@ using Newtonsoft.Json.Linq;
 
 public enum Language
 {
-    Chinese,
-    Japanese
+    中文,
+    日文
 }
 public enum ModelSource
 {
@@ -128,8 +128,8 @@ public class Moegoe : MonoBehaviour
         {
             UnityEngine.Debug.Log("生成開始");
             moegoe.StandardInput.WriteLine("t");
-            if (language == Language.Chinese) moegoe.StandardInput.WriteLine("[ZH]" + texts[i] + "[ZH]");
-            if (language == Language.Japanese) moegoe.StandardInput.WriteLine("[JA]" + texts[i] + "[JA]");
+            if (language == Language.中文) moegoe.StandardInput.WriteLine("[ZH]" + texts[i] + "[ZH]");
+            if (language == Language.日文) moegoe.StandardInput.WriteLine("[JA]" + texts[i] + "[JA]");
             moegoe.StandardInput.WriteLine(VoiceIndex);
             moegoe.StandardInput.WriteLine(UnityEngine.Application.streamingAssetsPath + "\\t" + i + ".wav");
             moegoe.StandardInput.WriteLine("y");
@@ -180,7 +180,7 @@ public class Moegoe : MonoBehaviour
         string url = APIUrl.text + "/voice/bert-vits2";
         text = text.Replace(" ","");
         //string url = APIUrl.text + "/voice/vits";
-        url += "?text=" + text + "&id=" + VoiceIndex + "&lang=" + (language == Language.Chinese ? "zh" : "ja") + "&format=wav";
+        url += "?text=" + text + "&id=" + VoiceIndex + "&lang=" + (language == Language.中文? "zh" : "ja") + "&format=wav";
         using (var request = UnityWebRequestMultimedia.GetAudioClip(url,AudioType.WAV))
         {
             yield return request.SendWebRequest();
@@ -342,7 +342,7 @@ public class Moegoe : MonoBehaviour
             UnityEngine.Debug.Log("配置文件副檔名正確");
         }
         VoiceIndex = "0";
-        language = Language.Chinese;
+        language = Language.中文;
         languageDropdown.value = 0;
         languageDropdown.RefreshShownValue();
         speakersDropdown.value = 0;
@@ -361,7 +361,7 @@ public class Moegoe : MonoBehaviour
     public void InitAPIVits()
     {
         VoiceIndex = "0";
-        language = Language.Chinese;
+        language = Language.中文;
         languageDropdown.value = 0;
         languageDropdown.RefreshShownValue();
         speakersDropdown.value = 0;
